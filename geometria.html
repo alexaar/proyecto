@@ -1,0 +1,147 @@
+<html>
+    <head>
+        <!-- <base href="https://edu-primaria-matematicas.com/geometria-genial"> -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geometría Genial - Juego Educativo de Matemáticas</title>
+<style>
+    body {
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        background-color: #E6F3FF;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    header {
+        background-color: #4169E1;
+        color: white;
+        text-align: center;
+        padding: 1em;
+    }
+    main {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2em;
+    }
+    #game-container {
+        background-color: white;
+        border-radius: 15px;
+        padding: 2em;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+    #shape-display {
+        width: 200px;
+        height: 200px;
+        margin: 1em auto;
+    }
+    button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 12px;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    #score {
+        font-size: 1.2em;
+        margin-top: 1em;
+    }
+    .boton2 {
+            background-color: #ffd700;
+            color: #4a4a4a;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .boton:hover {
+            background-color: #ffff00;
+        }
+</style>
+</head>
+<body>
+    <header>
+        <h1>Geometría Genial</h1>
+        <a href="index.html" class="boton2">Volver al inicio</a>
+    </header>
+    <main>
+        <div id="game-container">
+            <h2>¿Qué forma es esta?</h2>
+            <svg id="shape-display" viewBox="0 0 200 200"></svg>
+            <div id="options"></div>
+            <p id="feedback"></p>
+            <p id="score">Puntuación: <span id="score-value">0</span></p>
+        </div>
+    </main>
+    <script>
+        const shapes = [
+            { name: 'Triángulo', draw: (svg) => `<polygon points="100,20 180,180 20,180" fill="#FFD700"/>` },
+            { name: 'Cuadrado', draw: (svg) => `<rect x="40" y="40" width="120" height="120" fill="#FF6347"/>` },
+            { name: 'Círculo', draw: (svg) => `<circle cx="100" cy="100" r="80" fill="#32CD32"/>` },
+            { name: 'Rectángulo', draw: (svg) => `<rect x="30" y="60" width="140" height="80" fill="#4169E1"/>` },
+            { name: 'Pentágono', draw: (svg) => `<polygon points="100,20 180,80 150,180 50,180 20,80" fill="#FF69B4"/>` }
+        ];
+        let currentShape;
+        let score = 0;
+
+        function displayRandomShape() {
+            const shapeDisplay = document.getElementById('shape-display');
+            currentShape = shapes[Math.floor(Math.random() * shapes.length)];
+            shapeDisplay.innerHTML = currentShape.draw();
+        }
+
+        function createOptions() {
+            const optionsContainer = document.getElementById('options');
+            optionsContainer.innerHTML = '';
+            const shuffledShapes = [...shapes].sort(() => 0.5 - Math.random());
+            shuffledShapes.forEach(shape => {
+                const button = document.createElement('button');
+                button.textContent = shape.name;
+                button.onclick = () => checkAnswer(shape.name);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function checkAnswer(selectedShape) {
+            const feedback = document.getElementById('feedback');
+            if (selectedShape === currentShape.name) {
+                feedback.textContent = '¡Correcto! ¡Muy bien!';
+                feedback.style.color = 'green';
+                score++;
+            } else {
+                feedback.textContent = `Lo siento, la respuesta correcta era ${currentShape.name}.`;
+                feedback.style.color = 'red';
+            }
+            document.getElementById('score-value').textContent = score;
+            setTimeout(() => {
+                feedback.textContent = '';
+                startNewRound();
+            }, 2000);
+        }
+
+        function startNewRound() {
+            displayRandomShape();
+            createOptions();
+        }
+        // Iniciar el juego
+        startNewRound();
+    </script>
+
+</body>
+</html>

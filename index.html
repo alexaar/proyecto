@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Bienvenido a Nuestra Aventura Matemática!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Sniglet&display=swap');
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            border-radius: 0 0 20px 20px;
+        }
+
+        h1 {
+            font-family: 'Sniglet', cursive;
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .image-strip-container {
+            overflow: hidden;
+            margin: 30px 0;
+            position: relative;
+            height: 150px;
+        }
+
+        .image-strip {
+            display: flex;
+            position: absolute;
+            transition: transform 0.5s ease;
+        }
+
+        .image-strip img {
+            width: 150px;
+            height: 150px;
+            margin: 0 10px;
+            object-fit: contain;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        section {
+            background-color: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 10px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #4CAF50;
+            font-family: 'Sniglet', cursive;
+        }
+
+        .boton {
+            display: inline-block;
+            background-color: #FFA500;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1.2em;
+        }
+
+        .boton:hover {
+            background-color: #FF8C00;
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px 0;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 20px 20px 0 0;
+        }
+
+        #balloon-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        #balloon {
+            background-color: #FF6347;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            font-family: 'Sniglet', cursive;
+            line-height: 1.2;
+            transition: all 0.5s ease;
+        }
+
+        .number {
+            position: absolute;
+            font-size: 24px;
+            font-weight: bold;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                width: 90%;
+            }
+            #balloon {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="balloon-container" style="display: none;">
+        <div id="balloon">Bienvenidos a aprender jugando</div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>¡Bienvenido a Nuestra Aventura Matemática!</h1>
+            
+        </header>
+
+        <div class="image-strip-container">
+            <div class="image-strip">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB4PSI1MCIgeT0iNTUiIGZvbnQtc2l6ZT0iNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNGRkQ3MDAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiPjEyMzwvdGV4dD48L3N2Zz4=" alt="123">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB4PSI1MCIgeT0iNjAiIGZvbnQtc2l6ZT0iNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM0Q0FGNTAiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiPis8L3RleHQ+PC9zdmc+" alt="+">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB4PSI1MCIgeT0iNjAiIGZvbnQtc2l6ZT0iNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNGRjYzNDciIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiPi08L3RleHQ+PC9zdmc+" alt="-">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB4PSI1MCIgeT0iNjAiIGZvbnQtc2l6ZT0iNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMxRTkwRkYiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiPsOXPC90ZXh0Pjwvc3ZnPg==" alt="×">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB4PSI1MCIgeT0iNjAiIGZvbnQtc2l6ZT0iNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM5OTMyQ0MiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiPsO3PC90ZXh0Pjwvc3ZnPg==" alt="÷">
+            </div>
+        </div>
+
+        <main>
+            <section>
+                <h2>Aprende Matemáticas Jugando</h2>
+                <p>¡Explora el mundo de las matemáticas de manera divertida! Empieza con desafíos básicos y avanza a niveles más complejos.</p>
+                <a href="operaciones.html" class="boton">Comenzar con los juegos</a>
+            </section>
+
+            <section>
+                <h2>Aprende Figuras Geométricas Jugando</h2>
+                <p>¡Explora el mundo de las figuras geométricas de manera divertida! Empieza con desafíos básicos y avanza a niveles más complejos.</p>
+                <a href="geometria.html" class="boton">Comenzar con Geometría</a>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2024 Juego Aventura Matematica</p>
+            <marquee>Autor: Luckas Aguas Quiñonez - Grado 6 A</marquee>
+        </footer>
+    </div>
+
+    <script>
+        const imageStrip = document.querySelector('.image-strip');
+        const imageWidth = 170; // Width of each image plus margin
+        let position = 0;
+
+        function moveStrip() {
+            position -= 1;
+            if (position <= -imageWidth) {
+                imageStrip.appendChild(imageStrip.firstElementChild);
+                position += imageWidth;
+            }
+            imageStrip.style.transform = `translateX(${position}px)`;
+            requestAnimationFrame(moveStrip);
+        }
+
+        // Clone images to create a seamless loop
+        const images = imageStrip.innerHTML;
+        imageStrip.innerHTML = images + images;
+
+        moveStrip();
+
+        // Balloon animation
+        const balloon = document.getElementById('balloon');
+        const balloonContainer = document.getElementById('balloon-container');
+
+        function animateBalloon() {
+            let size = 50;
+            const maxSize = 300;
+            const growthRate = 2;
+            const growthInterval = 50;
+
+            function grow() {
+                if (size < maxSize) {
+                    size += growthRate;
+                    balloon.style.width = `${size}px`;
+                    balloon.style.height = `${size}px`;
+                    balloon.style.fontSize = `${size / 10}px`;
+                    setTimeout(grow, growthInterval);
+                } else {
+                    popBalloon();
+                }
+            }
+
+            grow();
+        }
+
+        function popBalloon() {
+            balloon.style.transform = 'scale(1.5)';
+            setTimeout(() => {
+                balloon.style.opacity = '0';
+                createNumbers();
+                setTimeout(() => {
+                    balloonContainer.style.display = 'none';
+                }, 1000);
+            }, 200);
+        }
+
+        function createNumbers() {
+            for (let i = 0; i < 50; i++) {
+                const number = document.createElement('div');
+                number.classList.add('number');
+                number.textContent = Math.floor(Math.random() * 10);
+                number.style.left = `${Math.random() * 100}%`;
+                number.style.top = `${Math.random() * 100}%`;
+                balloonContainer.appendChild(number);
+
+                setTimeout(() => {
+                    number.style.transform = `translate(${Math.random() * 400 - 200}px, ${Math.random() * 400 - 200}px)`;
+                    number.style.opacity = '1';
+                }, 50);
+
+                setTimeout(() => {
+                    number.style.opacity = '0';
+                }, 1500);
+            }
+        }
+
+        // Check if it's the first visit
+        if (!localStorage.getItem('hasVisited')) {
+            balloonContainer.style.display = 'flex';
+            setTimeout(animateBalloon, 500);
+            localStorage.setItem('hasVisited', 'true');
+        }
+    </script>
+</body>
+</html>
